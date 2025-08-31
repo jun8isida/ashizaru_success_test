@@ -30,11 +30,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let rewardTimer = null;
 
     const characters = {
-        'のぶ': { name: 'のぶ', img: 'images/のぶ.png', specialty: 'kick', friendship: 0 },
-        'つばさ': { name: 'つばさ', img: 'images/つばさ.png', specialty: 'speed', friendship: 0 },
-        'ダンガン': { name: 'ダンガン', img: 'images/ダンガン.png', specialty: 'dribble', friendship: 0 },
-        'かにゃ': { name: 'かにゃ', img: 'images/かにゃ.png', specialty: 'iq', friendship: 0 },
-        'バモンキー': { name: 'バモンキー', img: 'images/バモンキー.png', specialty: null, friendship: 0 }
+        'のぶ': { name: 'のぶ', img: 'images/1-nobu.png', specialty: 'kick', friendship: 0 },
+        'つばさ': { name: 'つばさ', img: 'images/3-tsubasa.png', specialty: 'speed', friendship: 0 },
+        'ダンガン': { name: 'ダンガン', img: 'images/2-dangan.png', specialty: 'dribble', friendship: 0 },
+        'かにゃ': { name: 'かにゃ', img: 'images/4-kanya.png', specialty: 'iq', friendship: 0 },
+        'バモンキー': { name: 'バモンキー', img: 'images/5-bamo.png', specialty: null, friendship: 0 }
     };
     const characterList = Object.values(characters);
 
@@ -46,7 +46,6 @@ document.addEventListener('DOMContentLoaded', () => {
         { speaker: 'バモンキー', text: '練習で能力を上げて、仲間との絆を深めるんだ。それじゃ、頑張れウキ！' }
     ];
 
-    // ★試合前の会話シナリオを追加
     const preMatchScenario = [
         { speaker: '主人公', text: 'いよいよ試合だ…。練習の成果を見せるぞ！' },
         { speaker: 'バモンキー', text: 'その意気だ！みんな、リラックスして楽しんでこいウキ！' },
@@ -175,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (Math.random() < 0.35 && events.length > 0) {
             triggerRandomEvent();
         } else if (gameState.week > 8) {
-            triggerPreMatchScene(); // ★試合前に会話シーンを挟む
+            triggerPreMatchScene();
         }
     }
 
@@ -191,7 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
             messageLog.innerHTML = `${character.name}とのイベントが発生した！<br><span class="gains-display">${eventGains}</span>`;
             
             if (gameState.week > 8) {
-                triggerPreMatchScene(); // ★試合前に会話シーンを挟む
+                triggerPreMatchScene();
             } else {
                 switchScreen('main');
             }
@@ -223,12 +222,10 @@ document.addEventListener('DOMContentLoaded', () => {
         nextButton.onclick = showNextLine;
     }
 
-    // ★試合前会話シーンを開始する関数
     function triggerPreMatchScene() {
         playStory(preMatchScenario, characters['バモンキー'], startMatch);
     }
 
-    // ★試合進行ロジックを全面的に書き換え
     function startMatch() {
         switchScreen('match');
         const matchImage = document.getElementById('match-image');
@@ -239,11 +236,11 @@ document.addEventListener('DOMContentLoaded', () => {
         passChoices.style.display = 'none';
 
         const matchSequence = [
-            { text: "試合開始！序盤は静かな立ち上がりだ！", image: "images/試合1.png" },
-            { text: "中盤、一進一退の攻防が続く！", image: "images/試合2.png" },
-            { text: "相手チームの厳しいプレス！危ない場面だ！", image: "images/試合3.png" },
-            { text: "カウンターのチャンス！一気に駆け上がる！", image: "images/試合4.png" },
-            { text: `ゴール前までボールを運んだ！ボールは${gameState.playerName}へ！`, image: "images/試合5.png" }
+            { text: "試合開始！序盤は静かな立ち上がりだ！", image: "images/10-game1.png" },
+            { text: "中盤、一進一退の攻防が続く！", image: "images/11-game2.png" },
+            { text: "相手チームの厳しいプレス！危ない場面だ！", image: "images/12-game3.png" },
+            { text: "カウンターのチャンス！一気に駆け上がる！", image: "images/13-game4.png" },
+            { text: `ゴール前までボールを運んだ！ボールは${gameState.playerName}へ！`, image: "images/14-game5.png" }
         ];
 
         let i = 0;
@@ -255,9 +252,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 i++;
             } else {
                 clearInterval(interval);
-                passChoices.style.display = 'flex'; // パス選択肢を表示
+                passChoices.style.display = 'flex';
             }
-        }, 2500); // 2.5秒ごとに進行
+        }, 2500);
 
         Object.values(characters).filter(c => c.name !== 'バモンキー').forEach(char => {
             const button = document.createElement('button');
@@ -291,7 +288,15 @@ document.addEventListener('DOMContentLoaded', () => {
             Object.values(characters).filter(c => c.name !== 'バモンキー').forEach(char => {
                 if (char.friendship > maxFriendship) { maxFriendship = char.friendship; topCharacter = char; }
             });
-            gameState.rewardImagePath = `images/${topCharacter.name}特典.png`;
+
+            const rewardImageMap = {
+                'のぶ': 'images/21-nobu.png',
+                'つばさ': 'images/22-dangan.png',
+                'ダンガン': 'images/23-tsubasa.png',
+                'かにゃ': 'images/24-kanya.png'
+            };
+            gameState.rewardImagePath = rewardImageMap[topCharacter.name];
+            
         } else {
             title.textContent = "試合敗北…";
             message.textContent = "あと一歩でした。この悔しさをバネに、また挑戦しよう！";
