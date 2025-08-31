@@ -29,8 +29,7 @@
                     <span>スピード: <span id="speed-stat">0</span></span>
                     <span>IQ: <span id="iq-stat">0</span></span>
                 </div>
-                <div id="friendship-bar">
-                    </div>
+                <div id="friendship-bar"></div>
             </header>
             
             <div id="field-area">
@@ -73,11 +72,19 @@
         </div>
 
         <div id="match-screen" class="screen">
-            <h2>最終試合</h2>
-            <div id="match-log"></div>
-            <div id="pass-choices" style="display: none;">
-                <p>絶好のチャンス！誰にパスを出す？</p>
+            <div id="match-top-view">
+                <img src="" id="match-image" alt="試合の様子">
+            </div>
+            <div id="commentary-area">
+                <div id="commentary-bubble">
+                    <p id="commentary-text"></p>
                 </div>
+                <img src="images/実況者.png" id="commentator-char" alt="実況者">
+            </div>
+            <div id="pass-choices" class="overlay" style="display: none;">
+                <p>絶好のチャンス！誰にパスを出す？</p>
+                <div id="pass-buttons"></div>
+            </div>
         </div>
 
         <div id="result-screen" class="screen">
