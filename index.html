@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>あしざるFC サクセス風ゲーム</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="game-container">
+
+        <div id="start-screen" class="screen active">
+            <h1>あしざるFC育成シミュレーション</h1>
+            <p>主人公の名前を入力してください</p>
+            <input type="text" id="player-name-input" placeholder="主人公">
+            <button id="start-button">ゲーム開始</button>
+        </div>
+
+        <div id="main-game-screen" class="screen">
+            <header>
+                <div id="info-bar">
+                    <span id="week-display">1週目</span>
+                    <span id="countdown-display"></span>
+                    <span id="player-name-display"></span>
+                </div>
+                <div id="stats-bar">
+                    <span>キック: <span id="kick-stat">0</span></span>
+                    <span>スピード: <span id="speed-stat">0</span></span>
+                    <span>IQ: <span id="iq-stat">0</span></span>
+                </div>
+                <div id="friendship-bar">
+                    </div>
+            </header>
+            
+            <div id="field-area">
+                <img src="images/主人公.png" id="player-char" class="character">
+                <img src="" id="npc-char" class="character">
+            </div>
+
+            <div id="message-log"></div>
+
+            <nav id="training-menu">
+                <button class="menu-button" data-training="kick">
+                    <div class="icon-background"><img src="images/icon_kick.png" alt="キック"></div>
+                    <span>キック</span>
+                </button>
+                <button class="menu-button" data-training="speed">
+                    <div class="icon-background"><img src="images/icon_speed.png" alt="走る"></div>
+                    <span>走る</span>
+                </button>
+                <button class="menu-button" data-training="dribble">
+                    <div class="icon-background"><img src="images/icon_tech.png" alt="ドリブル"></div>
+                    <span>ドリブル</span>
+                </button>
+                <button class="menu-button" data-training="iq">
+                    <div class="icon-background"><img src="images/icon_read.png" alt="読書"></div>
+                    <span>読書</span>
+                </button>
+            </nav>
+        </div>
+        
+        <div id="event-screen" class="screen">
+            <div id="event-characters">
+                <img src="images/主人公.png" id="event-player-char" class="character">
+                <img src="" id="event-npc-char" class="character">
+            </div>
+            <div id="dialogue-box">
+                <div id="speaker-name"></div>
+                <p id="dialogue-text"></p>
+                <button id="next-dialogue-button">次へ</button>
+            </div>
+        </div>
+
+        <div id="match-screen" class="screen">
+            <h2>最終試合</h2>
+            <div id="match-log"></div>
+            <div id="pass-choices" style="display: none;">
+                <p>絶好のチャンス！誰にパスを出す？</p>
+                </div>
+        </div>
+
+        <div id="result-screen" class="screen">
+            <h2 id="result-title"></h2>
+            <p id="result-message"></p>
+            <div id="reward-notice" style="display: none;">
+                <p>※得点画像は、スクリーンショットで保存してね！</p>
+                <p>※１０秒後に自動でスタート画面に戻ります。</p>
+            </div>
+            <button id="view-reward-button" style="display: none;">特典を見る</button>
+            <button id="restart-button" style="display: none;">もう一度プレイする</button>
+        </div>
+
+        <div id="reward-screen" class="screen">
+            <img src="" id="reward-background-image" class="full-screen-image">
+            <canvas id="reward-text-canvas"></canvas>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
