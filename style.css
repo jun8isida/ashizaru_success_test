@@ -1,5 +1,5 @@
 body {
-    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+    font-family: 'Helvetica Neue', Arial, 'Hirino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
     background-color: #f0f0f0;
     display: flex;
     justify-content: center;
@@ -10,7 +10,7 @@ body {
 
 #game-container {
     width: 480px;
-    height: 600px; /* ★高さを800pxから600pxに変更 */
+    height: 600px; /* ★高さを550pxから600pxに変更 */
     background-color: #fff;
     border: 2px solid #333;
     border-radius: 10px;
@@ -39,6 +39,7 @@ body {
 }
 #start-screen h1 {
     color: #005bac;
+    margin: 5px 0;
 }
 #player-name-input {
     padding: 10px;
@@ -93,7 +94,7 @@ body {
 }
 #field-area {
     flex-grow: 1;
-    background-image: url('images/背景コート.png');
+    background-image: url('images/backglaund.png');
     background-size: cover;
     background-position: center;
     position: relative;
@@ -146,7 +147,7 @@ body {
 
 /* イベント画面 */
 #event-screen {
-    background-image: url('images/背景コート.png');
+    background-image: url('images/backglaund.png');
     background-size: cover; background-position: center; justify-content: flex-start;
 }
 #event-characters { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
@@ -168,17 +169,17 @@ body {
 #dialogue-box.npc-speaking::before { left: 75%; transform: translateX(-50%); }
 #next-dialogue-button { position: absolute; bottom: 10px; right: 15px; }
 
-/* ★試合画面のスタイルを全面的に変更 */
+/* ★試合画面のスタイル */
 #match-screen {
     position: relative;
-    background-color: #001f3f; /* 紺色の背景に変更 */
+    background-color: #001f3f;
     justify-content: initial;
     align-items: initial;
 }
 #match-top-view {
     width: 100%;
     height: 65%;
-    background-image: url('images/背景コート.png'); /* 背景画像を指定 */
+    background-image: url('images/backglaund.png');
     background-size: cover;
     background-position: center;
     display: flex;
@@ -195,7 +196,7 @@ body {
     bottom: 10px;
     left: 10px;
     right: 10px;
-    height: 220px; /* エリアの高さを確保 */
+    height: 220px;
 }
 #commentator-char {
     position: absolute;
@@ -205,19 +206,18 @@ body {
 }
 #commentary-bubble {
     position: absolute;
-    bottom: 180px; /* 実況者の頭上あたり */
-    left: 0; /* 左端に配置 */
-    right: 140px; /* 右側に実況者のためのスペースを確保 */
+    bottom: 180px;
+    left: 0;
+    right: 140px;
     background-color: rgba(255, 255, 255, 0.9);
     border: 2px solid #333;
     padding: 15px;
     min-height: 50px;
-    /* ギザギザの形状を作成 */
     clip-path: polygon(0% 15%, 5% 5%, 10% 15%, 15% 5%, 20% 15%, 25% 5%, 30% 15%, 35% 5%, 40% 15%, 45% 5%, 50% 15%, 55% 5%, 60% 15%, 65% 5%, 70% 15%, 75% 5%, 80% 15%, 85% 5%, 90% 15%, 95% 5%, 100% 15%, 100% 85%, 95% 95%, 90% 85%, 85% 95%, 80% 85%, 75% 95%, 70% 85%, 65% 95%, 60% 85%, 55% 95%, 50% 85%, 45% 95%, 40% 85%, 35% 95%, 30% 85%, 25% 95%, 20% 85%, 15% 95%, 10% 85%, 5% 95%, 0% 85%);
 }
 #commentary-bubble::before {
     content: ''; position: absolute; bottom: -20px;
-    right: 60px; /* 吹き出しのしっぽの位置 */
+    right: 60px;
     width: 0; height: 0; border-style: solid;
     border-width: 20px 15px 0 15px;
     border-color: #333 transparent transparent transparent;
